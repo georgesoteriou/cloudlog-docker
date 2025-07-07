@@ -4,6 +4,12 @@ This resurrects the [now defunct](https://github.com/magicbug/Cloudlog/commit/46
 
 The images will be tagged with the Cloudlog version and available from: [GitHub](https://github.com/g7ufo/cloudlog/pkgs/container/cloudlog).
 
+## Create new version
+
+Update username/image in build.sh as needed.
+Run `build.sh <version_number>`. 
+This will push an image with both the tag of the version number and 'latest'
+
 ## Donations
 
 Please consider either paying for [magicbug to host your cloudlog](https://github.com/magicbug/Cloudlog#want-cloudlog-hosting) or donating [here](https://github.com/magicbug/Cloudlog#patreons--donors).
@@ -42,31 +48,12 @@ docker run \
   -e DATABASE_USERNAME="m9abc" \
   -e DEVELOPER_MODE="no" \
   -e LOCATOR="IO94XX" \
+  -v 'path/eqsl_card_images':'/var/www/html/images/':'rw'
+  -v 'path/backup':'/var/www/html/backup':'rw'
+  -v 'path/uploads':'/var/www/html/uploads':'rw'
   ...
   -name=cloudlog \
-  ghcr.io/neilbartley/cloudlog:latest
+  georgesoteriou/cloudlog:latest
 ```
 
-### Example: `docker compose`
-
-```
-  cloudlog:
-    container_name: cloudlog
-    image: ghcr.io/neilbartley/cloudlog:latest
-    restart: unless-stopped
-    environment:
-      BASE_URL: "https://log.m9abc.uk/"
-      CALLBOOK: "hamqth"
-      CALLBOOK_PASSWORD: "supersecret"
-      CALLBOOK_USERNAME: "m9abc"
-      DATABASE_HOSTNAME: "mariadb"
-      DATABASE_IS_MARIADB: "yes"
-      DATABASE_NAME: "m9abc_log"
-      DATABASE_PASSWORD: "supersecret"
-      DATABASE_USERNAME: "m9abc"
-      DEVELOPER_MODE: "no"
-      LOCATOR: "IO94ER"
-    ...
-```
-
-73, G7UFO
+73, HB9IPN
